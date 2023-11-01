@@ -46,7 +46,7 @@ export default function MainGroupChallengeTopTabNavigator({
           tabBarIndicatorStyle: {
             backgroundColor: colors.themeWhite,
           },
-          title: '라이브',
+          title: '라이브s',
           tabBarLabelStyle: {
             color: colors.themeWhite,
             fontWeight: 'bold',
