@@ -35,4 +35,5 @@ export const constants = {
 export const queryKeys = {
   MISSION: 'MISSION',
   MULTI_CHALLENGE: 'MULTI_CHALLENGE',
+  MULTI_CHALLENGE_HISTORIES: 'MULTI_CHALLENGE_HISTORIES',
 }
