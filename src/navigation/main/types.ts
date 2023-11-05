@@ -26,6 +26,7 @@ export type MainRootStackParamsList = {
   mainRootGroupChallengeTopTab: {
     challengeId: number
   }
+  mainRootGroupChallengeGroupCreate: undefined
 }
 
 export type ChallengeStackParamList = {

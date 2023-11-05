@@ -1,12 +1,18 @@
 import React from 'react'
-import { HStack, Text } from '@gluestack-ui/themed'
+import {
+  Box,
+  HStack,
+  Icon,
+  Pressable,
+  SearchIcon,
+  Text,
+} from '@gluestack-ui/themed'
 import { FlashList } from '@shopify/flash-list'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useQuery } from 'react-query'
 import { useRecoilValue } from 'recoil'
 import { GroupChallengeStackScreenProps } from '../../../../navigation/types'
 import { colors, constants, queryKeys } from '../../../../utils/consts'
-import BattleFab from './BattleFab'
 import GroupChallengeCard from './GroupChallengeCard'
 import axiosInstance from '../../../../utils/api'
 import { userAuthContextState } from '../../../../state/userAuthContext'
@@ -37,10 +43,9 @@ export default function GroupChallengeMainScreen({
   })
   useRefreshOnFocus(refetch)
 
-  const handleNavigateToChallengeCreate = () => {
+  const handleNavigateToChallengeGroupCreate = () => {
     navigation.navigate('mainRoot', {
-      screen: 'mainRootChallengeCreate',
-      params: { challengeType: constants.MULTI },
+      screen: 'mainRootGroupChallengeGroupCreate',
     })
   }
 
@@ -54,7 +59,6 @@ export default function GroupChallengeMainScreen({
   }
 
   const renderItem = (challenge: GroupChallenge, index: number) => {
-    // return <GroupChallengeCard {...challenge} />
     return (
       <GroupChallengeCard
         id={challenge.id}
@@ -81,6 +85,7 @@ export default function GroupChallengeMainScreen({
         backgroundColor={colors.themeBlack}
         h="$10"
         px="$4"
+        justifyContent="center"
         alignItems="center"
         space="md"
       >
@@ -88,6 +93,38 @@ export default function GroupChallengeMainScreen({
           그룹 챌린지
         </Text>
       </HStack>
+      <Pressable
+        mx="$4"
+        mb="$4"
+        backgroundColor={colors.actionColor}
+        rounded="$md"
+        onPress={handleNavigateToChallengeGroupCreate}
+      >
+        <HStack alignItems="center" px="$4" py="$2" space="md">
+          <Icon as={SearchIcon} w="$4" h="$4" color={colors.themeWhite} />
+          <Text color={colors.themeWhite}>그룹 챌린지 코드로 추가하기</Text>
+        </HStack>
+      </Pressable>
+      <Pressable
+        mx="$4"
+        h="$20"
+        p="$4"
+        backgroundColor={colors.actionColor}
+        rounded="$md"
+        onPress={handleNavigateToChallengeGroupCreate}
+      >
+        <Text color={colors.themeWhite} fontWeight="$bold">
+          그룹 챌린지 생성 😆
+        </Text>
+        <Text color={colors.themeWhite}>
+          친구와 함께하면 더욱 즐거운 챌린지!
+        </Text>
+      </Pressable>
+      <Box m="$4">
+        <Text color={colors.themeWhite} fontWeight="$bold" size="xl">
+          그룹 챌린지
+        </Text>
+      </Box>
       {challengeRes && (
         <FlashList
           renderItem={({ item, index }) => renderItem(item, index)}
@@ -95,10 +132,6 @@ export default function GroupChallengeMainScreen({
           estimatedItemSize={100}
         />
       )}
-      <BattleFab
-        navigateToChallengeList={() => console.log('d')}
-        navigateToChallengeCreate={handleNavigateToChallengeCreate}
-      />
     </SafeAreaView>
   )
 }

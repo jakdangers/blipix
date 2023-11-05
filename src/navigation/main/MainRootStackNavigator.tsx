@@ -16,6 +16,7 @@ import MissionCameraScreen from '../../screens/main/task/camera/MissionCameraScr
 import ChallengeCreateScreen from '../../screens/main/root/challenge_create/ChallengeCreateScreen'
 import MainGroupChallengeTopTabNavigator from './MainGroupChallengeTopTabNavigator'
 import { colors } from '../../utils/consts'
+import GroupChallengeCreateScreen from '../../screens/main/group_challenge/create/GroupChallengeCreateScreen'
 
 const MainRootStack = createNativeStackNavigator<MainRootStackParamsList>()
 
@@ -92,6 +93,11 @@ export default function MainRootStackNavigator() {
             </Pressable>
           ),
         })}
+      />
+      <MainRootStack.Screen
+        name="mainRootGroupChallengeGroupCreate"
+        component={GroupChallengeCreateScreen}
+        options={{ headerShown: false }}
       />
     </MainRootStack.Navigator>
   )
